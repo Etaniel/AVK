@@ -1,0 +1,2 @@
+med1,effect1
+med2,effect2
