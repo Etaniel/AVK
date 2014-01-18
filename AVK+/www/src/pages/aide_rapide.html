@@ -4,23 +4,22 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>AVK+</title>
-<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.3.2.min.css">
+	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.3.2.min.css">
 	<link rel="stylesheet" href="../../css/themes/default/theme1.min.css" />
-	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.0/jquery.mobile.structure-1.4.0.min.css" />
-	<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
-	<script src="http://code.jquery.com/mobile/1.4.0/jquery.mobile-1.4.0.min.js"></script>
-
-
+	<link rel="stylesheet" href="../../css/jquery.mobile.structure-1.4.0.min.css" />
+	<script src="../../js/jquery-1.10.2.min.js"></script>
+	<script src="../../js/jquery.mobile-1.4.0.min.js"></script>
 	<style>
 		.content-primary { text-align:center;}
 		.fieldcontain {  }
+		#result { text-align:center;}
 		
     </style>
 	
 </head>
 <body>
 	<div data-role="page" class="ui-responsive-panel">
-		<div data-role="header" data-theme="f">
+		<div data-role="header" data-theme="a">
 			<h1>AVK+</h1>
 			<a href="#" data-icon="arrow-l" data-rel="back">Retour</a>
 			<a href="#right-panel" data-icon="bars" data-iconpos="notext" data-shadow="false" data-iconshadow="false">Interactions médicamenteuses</a>
@@ -28,83 +27,122 @@
 		
 		<div data-role="content">
 			<div class="content-primary" >
-			<h2>Aide rapide</h2>
-			<p>Ici vous pouvez rapidement connaître la dose à administrer à un patient.</p>
-			<p>Si vous êtes en charge du patient, vous pouvez consulter l'aide rapide à partir de son dossier dans l'onglet "Dossiers patients" de la page d'accueil.</p>
-			<br>
-			<form name="aideRapidePatient"action="#" method="post">
-			<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-			
-			<input type="radio" name="radio-choice-b" id="radio-choice-c" value="list" checked="checked">
-			<label for="radio-choice-c">Nouveau Patient</label>
-			<input type="radio" name="radio-choice-b" id="radio-choice-d" value="grid">
-			<label for="radio-choice-d">Patient déjà répertorié</label>
-			
-			</fieldset>
-			</form>
-			
-			<form name="aideRapide"action="#" method="post">
-			<fieldset data-role="controlgroup">
-			<legend>Poids du patient:</legend>
-			<input type="radio" name="radio-choice-1" id="radio-choice-1" value=">60" checked="checked">
-			<label for="radio-choice-1">> 60kg</label>
-			<input type="radio" name="radio-choice-1" id="radio-choice-2" value="<60">
-			<label for="radio-choice-2">< 60kg</label>
-			</fieldset>
-			<fieldset data-role="controlgroup">
-			<legend>Age du patient:</legend>
-			<input type="radio" name="radio-choice-2" id="radio-choice-1" value="" checked="checked">
-			<label for="radio-choice-1"> plus de 35 ans</label>
-			<input type="radio" name="radio-choice-2" id="radio-choice-2" value="<60">
-			<label for="radio-choice-2"> moins de 35 ans</label>
-			</fieldset>
-			
-			<a href="#" class="ui-shadow ui-btn ui-corner-all">Valider</a>
-		
-			</form>
+				<h2>Aide rapide</h2>
+				<p>Ici vous pouvez rapidement connaître la dose à administrer à un patient.</p>
+				<p>Si vous êtes en charge du patient, vous pouvez consulter l'aide rapide à partir de son dossier dans l'onglet "Dossiers patients" de la page d'accueil.</p>
+				<br>
+				
+				<form name="aideRapidePatient" action="#" method="post">
+					<div>
+						<!-- division restant toujours affichée -->
+						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
+							<input type="radio" name="radio-choice-b" id="radio-choice-c" value="list" checked="checked" onclick="display1Div('nouveau-patient', 'patient-deja-repertorie');" />
+							<label for="radio-choice-c">Nouveau patient</label>
+							
+							<input type="radio" name="radio-choice-b" id="radio-choice-d" value="grid" onclick="display1Div('patient-deja-repertorie', 'nouveau-patient' );" />
+							<label for="radio-choice-d">patient avec historique</label>
+						</fieldset>
+						<fieldset data-role="controlgroup" data-mini="true">
+							<legend>Choix de la molécule utilisée</legend>
+								<input type="radio" name="medoc" id="radio-choice-1" value="choice-1" checked="checked" onclick="displayMedic(this);" />
+								<label for="radio-choice-1">Warfarine</label>
+								<input type="radio" name="medoc" id="radio-choice-2" value="choice-2" onclick="displayMedic(this);"/>
+								<label for="radio-choice-2">Fluindione</label>
+						</fieldset>		
+							
+						<fieldset data-role="controlgroup" data-mini="true">
+						<legend>Présence de la Valve chelou?</legend>
+								<input type="checkbox" name="checkbox-1a" id="checkbox-1a" checked="">
+								<label for="checkbox-1a">oui</label>
+						</fieldset>
+						
+					</div>
+					
+					<div id="nouveau-patient" style="display:''; ">
+						<div id="initiation1" style="display:'' ;">
+						
+							<div id="warfarine1" style="display:'' ;">
+								<fieldset data-role="controlgroup">
+									<legend>Poids du patient:</legend>
+										<input type="radio" name="radio-choice-1" id="radio-choice-1" value=">60" checked="checked">
+										<label for="radio-choice-1">> 60kg</label>
+										<input type="radio" name="radio-choice-1" id="radio-choice-2" value="<60">
+										<label for="radio-choice-2">< 60kg</label>
+								</fieldset>
+								
+								<fieldset data-role="controlgroup">
+									<legend>Age du patient:</legend>
+										<input type="radio" name="radio-choice-2" id="radio-choice-1" value="" checked="checked">
+										<label for="radio-choice-1"> plus de 35 ans</label>
+										<input type="radio" name="radio-choice-2" id="radio-choice-2" value="<60">
+										<label for="radio-choice-2"> moins de 35 ans</label>
+								</fieldset>
+								
+								<legend>Avez vous déjà eu 4 entretiens?</legend>
+									<input type="checkbox" name="checkbox-1b" id="checkbox-1b" checked="">
+									<label for="checkbox-1b">Oui</label>
+								
+								
+								<label for="text-basic">Votre (ancien ou ciblé?)Taux d'INR</label>
+								<input type="text" name="text-basic" id="text-basic" value="">
+								
+							</div>
+							
+							<div id="fluindione1" style="display: none ;">
+							</div>
+						</div>
+					
+						<div id="entretien1" style="display: none ;">
+							<div id="warfarine2" style="display:'' ;">
+								<label for="text-basic">Votre (ancien ou ciblé?)Taux d'INR</label>
+								<input type="text" name="text-basic" id="text-basic" value="">
+							</div> 
+							
+							<div id="fluindione2" style="display: none ;">
+							</div>
+						</div>
+					
+					<!--
+						
+						<a href="#" class="ui-shadow ui-btn ui-corner-all">Valider</a>
+					-->
+					</div>
+					
+					<div id="patient-deja-repertorie" style="display: none; ">
+						<div id="initiation2" style="display: '';">
+							<div id="warfarine3" style="display: '';">
+							</div>
+							<div id="fluindione3" style="display: none;">
+							</div>
+						</div>
+						
+						<div id="entretien2" style="display: none;">
+							<div id="warfarine4" style="display: '';">
+							</div>
+							<div id="fluindione4" style="display: none;">
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 
-		<div data-role="footer" data-theme="f" data-position="fixed">
+		<div data-role="footer" data-theme="a" data-position="fixed">
 			<h1>AVK+ Groupe C</h1>
 		</div>
 		
 		<div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="right-panel" data-theme="d">
 			<ul id="theList" data-role="listview" data-icon="false" data-filter="true" data-filter-placeholder="Rechercher un médicament.." data-filter-reveal="true" data-theme="d">
-				<li><a href="#" id="Allopurinol" onclick="recherche(this)" >Allopurinol</a></li>
-				<li><a href="#" id="Androgènes" onclick="recherche(this)">Androgènes</a></li>
-				<li><a href="#" id="ISRS" onclick="recherche(this)">ISRS</a></li>
-				<li><a href="#" id="Benzbromaron" onclick="recherche(this)">Benzbromaron</a></li>
-				<li><a href="#" id="Aprepitants" onclick="recherche(this)">Aprepitants</a></li>
-				<li><a href="#" id="Aminoglutethimide" onclick="recherche(this)">Aminoglutethimide</a></li>
+				<li class="ui-screen-hidden"><a href="#" id="Allopurinol" onclick="recherche(this)" >Allopurinol</a></li>
+				<li class="ui-screen-hidden"><a href="#" id="Androgènes" onclick="recherche(this)">Androgènes</a></li>
+				<li class="ui-screen-hidden"><a href="#" id="ISRS" onclick="recherche(this)">ISRS</a></li>
+				<li class="ui-screen-hidden"><a href="#" id="Benzbromaron" onclick="recherche(this)">Benzbromaron</a></li>
+				<li class="ui-screen-hidden"><a href="#" id="Aprepitants" onclick="recherche(this)">Aprepitants</a></li>
+				<li class="ui-screen-hidden"><a href="#" id="Aminoglutethimide" onclick="recherche(this)">Aminoglutethimide</a></li>
 			</ul>
-			
+			<div id="result" data-role="content"></div>
 		</div>
 	</div>
-	
-	<script type="text/javascript">
-		function recherche(theSearch){
-			switch(theSearch.id){
-				case "Allopurinol":
-					alert("Allopurinol :\n Augmente l'INR jusqu'à 8 jours après l'arrêt.");
-				break;
-				case "Androgènes":
-					alert("Androgènes :\n Augmente l'INR jusqu'à 8 jours après l'arrêt.");
-				break;
-				case "ISRS":
-					alert("ISRS :\n Augmente l'INR.");
-				break;
-				case "Benzbromaron":
-					alert("Benzbromaron :\n Augmente l'INR.");
-				break;
-				case "Aprepitants":
-					alert("Aprepitants :\n Augmente l'INR jusqu'à 8 jours après l'arrêt.");
-				break;
-				case "Aminoglutethimide":
-					alert("Aminoglutethimide :\n Diminuel'INR jusqu'à 2 semaines après l'arrêt.");
-				default:
-			}
-		}
-	</script>
+	<script type="text/javascript" src="../../js/aide_rapide.js"></script>
 </body>
 </html>
