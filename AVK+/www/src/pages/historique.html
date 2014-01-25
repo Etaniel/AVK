@@ -7,15 +7,16 @@
 	<link rel="stylesheet"  href="../../css/themes/default/jquery.mobile-1.3.2.min.css">
 	<link rel="stylesheet" href="../../css/themes/default/theme1.min.css" />
 	<link rel="stylesheet" href="../../css/jquery.mobile.structure-1.4.0.min.css" />
+	<link rel="stylesheet" href="../../css/historique.css" />
 	<script src="../../js/jquery-1.10.2.min.js"></script>
 	<script src="../../js/jquery.mobile-1.4.0.min.js"></script>
 	<style>
-		.userform { padding:.8em 1.2em; }
-		.userform h2 { color:#555; margin:0.3em 0 .8em 0; padding-bottom:.5em; border-bottom:1px solid rgba(0,0,0,.1); text-align: center;}
-		.userform label { display:block; margin-top:1.2em; }
-		.switch .ui-slider-switch { width: 6.5em !important }
-		.ui-grid-a { margin-top:1em; padding-top:.8em; margin-top:1.4em; border-top:1px solid rgba(0,0,0,.1); }
-    </style>
+	h4{display: inline-block;}
+	br {
+   display: block;
+   margin: -15px 0;
+}
+	</style>
 </head>
 <body>
 	<div data-role="page">
@@ -28,8 +29,36 @@
 		
 		<div data-role="content">
 			<div class="content-primary">
-				<h2>Pas de dossier sélectionné</h2>
-				<p>Pour commencer à naviguer dans les dossiers, connectez vous.</p>
+				<div id="entete">
+					<h1>
+						<img alt="" src="../../img/Patient.jpg" />
+						Leau-Juc Enevo
+					</h1>
+					<p class="sous-titre">
+						<strong>Dernière entrée :</strong>
+						le 25 janvier 2014
+					</p>
+				</div>
+
+				<div id="graphique">
+					<img alt="" src="../../img/TestGraphique.jpg" />
+				</div>
+
+				<div id="contenu">
+					<h2>Informations personnelles</h2>
+					<h4> Nom : </h4> ENEVO <br />
+					<h4> Prénom : </h4> LEAU-JUC <br />
+					<h4> Adresse : </h4> 15 rue des petites fleurs <br />
+					<h4> Code postal : </h4> 56 000 <br />
+					<h4> Ville : </h4> Vannes <br />
+					<h4> Date de naissance : </h4> DD/MM/YYYY <br />
+					<h4> Téléphone : </h4> 00-00-00-00-00 <br />
+					<h4> Profession : </h4> Développeur <br />
+					<h4> Adresse éléctronique : </h4> machin-truc@client.fr <br />
+					<h4> Numéro de sécurité sociale : </h4> 5 45 68 45 165 761 12 <br />
+					<h4> Médecin traitant : </h4> Duchmol <br />
+					<h4> Observations : </h4> Schizophrène, dépressif, kleptomane <br />
+				</div>
 			</div>
 		</div>
 		
