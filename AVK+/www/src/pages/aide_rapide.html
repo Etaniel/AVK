@@ -36,97 +36,132 @@
 					<div>
 						<!-- division restant toujours affichée -->
 						<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
-							<input type="radio" name="radio-choice-b" id="radio-choice-c" value="list" checked="checked" onclick="display1Div('nouveau-patient', 'patient-deja-repertorie');" />
-							<label for="radio-choice-c">Nouveau patient</label>
+							<input type="radio" name="mode" id="radio-ini" value="list" checked onClick="displayForm();" />
+							<label for="radio-ini">Initiation</label>
 							
-							<input type="radio" name="radio-choice-b" id="radio-choice-d" value="grid" onclick="display1Div('patient-deja-repertorie', 'nouveau-patient' );" />
-							<label for="radio-choice-d">patient avec historique</label>
+							<input type="radio" name="mode" id="radio-ent" value="grid" onClick="displayForm();" />
+							<label for="radio-ent">Entretien</label>
 						</fieldset>
 						<fieldset data-role="controlgroup" data-mini="true">
 							<legend>Choix de la molécule utilisée</legend>
-								<input type="radio" name="medoc" id="radio-choice-1" value="choice-1" checked="checked" onclick="displayMedic(this);" />
-								<label for="radio-choice-1">Warfarine</label>
-								<input type="radio" name="medoc" id="radio-choice-2" value="choice-2" onclick="displayMedic(this);"/>
-								<label for="radio-choice-2">Fluindione</label>
+								<input type="radio" name="medoc" id="radio-warf" value="choice-1" checked onClick="displayForm();" />
+								<label for="radio-warf">Warfarine</label>
+								<input type="radio" name="medoc" id="radio-fluo" value="choice-2" onClick="displayForm();"/>
+								<label for="radio-fluo">Fluindione</label>
 						</fieldset>		
 							
 						<fieldset data-role="controlgroup" data-mini="true">
-						<legend>Présence d'une Valve Mitrale ?</legend>
-								<input type="checkbox" name="checkbox-1a" id="checkbox-1a" checked="">
-								<label for="checkbox-1a">oui</label>
+						<legend>Présence de la Valve chelou?</legend>
+								<input type="checkbox" name="valve" id="check-valve">
+								<label for="check-valve">oui</label>
 						</fieldset>
 						
 					</div>
-					
-					<div id="nouveau-patient" style="display:''; ">
-						<div id="initiation1" style="display:'' ;">
-						
-							<div id="warfarine1" style="display:'' ;">
-								<fieldset data-role="controlgroup">
-									<legend>Poids du patient:</legend>
-										<input type="radio" name="radio-choice-1" id="radio-choice-1" value=">60" checked="checked">
-										<label for="radio-choice-1">> 60kg</label>
-										<input type="radio" name="radio-choice-1" id="radio-choice-2" value="<60">
-										<label for="radio-choice-2">< 60kg</label>
-								</fieldset>
-								
-								<fieldset data-role="controlgroup">
-									<legend>Age du patient:</legend>
-										<input type="radio" name="radio-choice-2" id="radio-choice-1" value="" checked="checked">
-										<label for="radio-choice-1"> plus de 35 ans</label>
-										<input type="radio" name="radio-choice-2" id="radio-choice-2" value="<60">
-										<label for="radio-choice-2"> moins de 35 ans</label>
-								</fieldset>
-								
-								<legend>Avez vous déjà eu 4 entretiens?</legend>
-									<input type="checkbox" name="checkbox-1b" id="checkbox-1b" checked="">
-									<label for="checkbox-1b">Oui</label>
-								
-								
-								<label for="text-basic">Votre (ancien ou ciblé?)Taux d'INR</label>
-								<input type="text" name="text-basic" id="text-basic" value="">
-								
-							</div>
-							
-							<div id="fluindione1" style="display: none ;">
-							</div>
-						</div>
-					
-						<div id="entretien1" style="display: none ;">
-							<div id="warfarine2" style="display:'' ;">
-								<label for="text-basic">Votre (ancien ou ciblé?)Taux d'INR</label>
-								<input type="text" name="text-basic" id="text-basic" value="">
-							</div> 
-							
-							<div id="fluindione2" style="display: none ;">
-							</div>
-						</div>
-					
-					<!--
-						
-						<a href="#" class="ui-shadow ui-btn ui-corner-all">Valider</a>
-					-->
-					</div>
-					
-					<div id="patient-deja-repertorie" style="display: none; ">
-						<div id="initiation2" style="display: '';">
-							<div id="warfarine3" style="display: '';">
-							</div>
-							<div id="fluindione3" style="display: none;">
-							</div>
-						</div>
-						
-						<div id="entretien2" style="display: none;">
-							<div id="warfarine4" style="display: '';">
-							</div>
-							<div id="fluindione4" style="display: none;">
-							</div>
-						</div>
-					</div>
 				</form>
+				
+				
+				
+				<!-- formulaire d'Initiation Warfarine -->
+				
+				<div id="iniWarf">
+					<form name="formWI" >
+						<fieldset data-role="controlgroup">
+							<legend>Poids du patient:</legend>
+								<input type="radio" name="poids" id="pSup" checked="true"/>
+								<label for="pSup">> 45kg</label>
+								<input type="radio" name="poids" id="pInf" />
+								<label for="pInf">< 45kg</label>
+						</fieldset>
+						
+						<legend>Jour 3 du traitement ou supérieur? </legend>
+							<input type="checkbox" name="J3sup" id="j3sup" onclick="displayTaux(this, 'div_Tx_W_I');" />
+							<label for="j3sup">Oui</label>
+						
+							<div id="div_Tx_W_I" style="display: none;">
+								<label for="champTx">INR : </label>
+								<input type="text" name="champ_taux" id="TxWI" onKeyUp="tauxChange(this, 'divTxWImes', 'TxWI_mes');" />
+								<div id="divTxWImes" style="display:none;" >
+									<p name="Tx_war_ini_message" id="TxWI_mes" style="color:red;"></p>
+								</div>
+							</div>
+					
+						<a href="#" class="ui-shadow ui-btn ui-corner-all" onClick="result1('TxWI', 'j3sup');">Valider</a>
+					</form>
+				</div>
+				
+				<!-- formulaire d'Initiation Fluindione -->
+				<div id="iniFluo" style="display: none;">
+					<form name="formFI" >
+						<legend>J2 ou supérieur? </legend>
+							<input type="checkbox" name="J2sup" id="j2sup" onclick="displayTaux(this, 'div_Tx_F_I');">
+							<label for="j2sup">Oui</label>
+						
+							<div id="div_Tx_F_I" style="display: none;">
+							
+								<input type="radio" name="Fluo_ini_J" id="FIJ2" checked="true">
+								<label for="FIJ2">Jour de traitement 2</label>
+								<input type="radio" name="Fluo_ini_J" id="FIJ4" >
+								<label for="FIJ4">Jour de traitement 4 ou supérieur</label>
+								
+								<label for="champTx">INR : </label>
+								<input type="text" name="champ_taux" id="TxFI" onKeyUp="tauxChange(this, 'divTxFImes', 'TxFI_mes');" >
+								<div id="divTxFImes" style="display:none;" >
+									<p name="Tx_flu_ini_message" id="TxFI_mes" style="color:red;"></p>
+								</div>
+								<label for="champDose">Dernier traitement (mg) : </label>
+								<input type="text" name="champ_dose" id="D_FI" onKeyUp="doseChange(this, 'divDFImes', 'DFI_mes');" >
+								<div id="divDFImes" style="display:none;" >
+									<p name="D_flu_ini_message" id="DFI_mes" style="color:red;"></p>
+								</div>
+							</div>
+						<a href="#" class="ui-shadow ui-btn ui-corner-all" onClick="result2('TxFI', 'D_FI', 'j2sup', 'FIJ2');">Valider</a>
+					</form>
+				</div>
+				
+				<!-- formulaire d'Entretien Warfarine -->
+				<div id="entWarf" style="display: none;">
+					<form name="" >
+						<label for="champTx">INR : </label>
+							<input type="text" name="champ_taux" id="TxWE" onKeyUp="tauxChange(this, 'divTxWEmes', 'TxWE_mes');" >
+							<div id="divTxWEmes" style="display:none;" >
+								<p name="Tx_war_ent_message" id="TxWE_mes" style="color:red;"></p>
+							</div>
+						
+						<label for="champDose">Dernier traitement (mg) : </label>
+							<input type="text" name="champ_dose" id="D_WE" onKeyUp="doseChange(this, 'divDWEmes', 'DWE_mes');" >
+							<div id="divDWEmes" style="display:none;" >
+								<p name="D_war_ent_message" id="DWE_mes" style="color:red;"></p>
+							</div>
+						<a href="#" class="ui-shadow ui-btn ui-corner-all" onClick="result3('TxWE', 'D_WE' );">Valider</a>
+					</form>
+				</div>
+				
+				
+				<!-- formulaire d'Entretien Fluindione -->
+				<div id="entFluo" style="display: none;">
+					<form name="" >
+						<label for="champTx">INR : </label>
+							<input type="text" name="champ_taux" id="TxFE" onKeyUp="tauxChange(this, 'divTxFEmes', 'TxFE_mes');" >
+							<div id="divTxFEmes" style="display:none;" >
+								<p name="Tx_flu_ent_message" id="TxFE_mes" style="color:red;"></p>
+							</div>
+						
+						<label for="champDose">Dernier traitement (mg) : </label>
+							<input type="text" name="champ_dose" id="D_FE" onKeyUp="doseChange(this, 'divDFEmes', 'DFE_mes');" >
+							<div id="divDFEmes" style="display:none;" >
+								<p name="D_flu_ent_message" id="DFE_mes" style="color:red;"></p>
+							</div>
+						<a href="#" class="ui-shadow ui-btn ui-corner-all" onClick="result4('TxFE', 'D_FE');">Valider</a>
+					</form>
+				</div>
+				
+				
+				
+				<TEXTAREA name="nom" id="affichage" rows=4 cols=40 disabled></TEXTAREA>
 			</div>
 		</div>
-
+		
+		
 		<div data-role="footer" data-theme="a" data-position="fixed">
 			<h1>AVK+ Groupe C</h1>
 		</div>
