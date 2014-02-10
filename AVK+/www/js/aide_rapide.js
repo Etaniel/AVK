@@ -68,8 +68,7 @@ function result1(idTxWI, idj3sup){
 	var TxWI = document.getElementById(idTxWI);
 	
 	dose = 0;
-	if(TxWI.value = ""){
-	}
+	
 	if(valve.checked){
 		 // vérifier ce que ça change sur la dose ou l'INR
 	}
@@ -81,19 +80,18 @@ function result1(idTxWI, idj3sup){
 			displayAffichage("INR incorrect");
 			return false ;
 		}
-		
+		TxWI = parseFloat(TxWI.value);
 		if(pSup.checked){
-		
-			if(TxWI.value < 1.3){
+			if(TxWI < 1.3){
 				dose = 6;
 			}
-			else if(TxWI.value < 1.5){
+			else if(TxWI < 1.5){
 				dose = 5;
 			}
-			else if(TxWI.value < 1.7){
+			else if(TxWI < 1.7){
 				dose = 4;
 			}
-			else if(TxWI.value < 1.9){
+			else if(TxWI < 1.9){
 				dose = 3;
 			}
 			else{ 
@@ -103,19 +101,19 @@ function result1(idTxWI, idj3sup){
 		
 		}
 		else{
-			if (TxWI.value < 1.3){
+			if (TxWI < 1.3){
 				dose = 5;
 			}	
-			else if (TxWI.value < 1.5){
+			else if (TxWI < 1.5){
 				dose = 4;
 			}			
-			else if (TxWI.value < 1.7){
+			else if (TxWI < 1.7){
 				dose = 3;
 			}		
-			else if (TxWI.value < 1.9){
+			else if (TxWI < 1.9){
 				dose = 2;
 			}
-			else if (TxWI.value < 2.5){
+			else if (TxWI < 2.5){
 				dose = 1;
 			}
 			else{
@@ -172,23 +170,24 @@ function result2(idTxFI, idD_FI, idj2sup, idFIJ2){
 			return false;
 		}
 		D_FI = parseInt(D_FI.value);
+		TxFI = parseFloat(TxFI.value);
 		// return false
 		
 		if(FIJ2.checked){
 			//traitement J2
-			if (TxFI.value < 1.2){
+			if (TxFI < 1.2){
 				dose = 30;
 			}
-			else if (TxFI.value < 1.5){
+			else if (TxFI < 1.5){
 				dose = 25;
 			}
-			else if (TxFI.value < 2){
+			else if (TxFI < 2){
 				dose = 20;
 			}
-			else if (TxFI.value < 2.2){
+			else if (TxFI < 2.2){
 				dose = 10;
 			}
-			else if(TxFI.value > 3){
+			else if(TxFI > 3){
 				dose = 5;
 			}
 			else{
@@ -198,16 +197,16 @@ function result2(idTxFI, idD_FI, idj2sup, idFIJ2){
 		}
 		else{
 			//traitement J4 ou supérieur
-			if (TxFI.value < 1.6){
+			if (TxFI < 1.6){
 				dose = D_FI + 10;
 			}
-			else if (TxFI.value < 2){
+			else if (TxFI < 2){
 				dose = D_FI + 5;
 			}
-			else if (TxFI.value < 2.5){
+			else if (TxFI < 2.5){
 				dose = D_FI;
 			}
-			else if (TxFI.value < 3){
+			else if (TxFI < 3){
 				if(D_FI > 20){
 					dose = D_FI - 5;
 				}
