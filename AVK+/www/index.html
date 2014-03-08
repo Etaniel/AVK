@@ -22,7 +22,10 @@
 	<div data-role="page" class="ui-responsive-panel">
 		<div data-role="header" data-theme="a">
 			<h1>AVK+</h1>
-			<a href="#add-form" data-icon="plus">Connexion</a>
+			
+			<a href="#left-panel" data-icon="arrow-l">Menu</a>
+			<a href="#right-panel" data-icon="arrow-r" data-iconpos="right">Connexion</a>
+			
 		</div>
 		
 		<div data-role="content">
@@ -30,9 +33,7 @@
 				<h2>Bienvenue sur AVK+</h2>
 				<p>L'application qui facilite la gestion des traitements de l'INR.</p>
 				
-					<a href="src/pages/aide_rapide.html" data-ajax="false" data-role="button" data-theme="c" data-inline="true">Aide rapide</a>
-					<a href="src/pages/protocole.html" data-ajax="false" data-role="button" data-theme="c" data-inline="true">Le protocole AVK</a>
-					<a href="src/pages/historique.html" data-ajax="false" data-role="button" data-theme="c" data-inline="true">Dossiers patients</a>
+					
 
 			</div>
 		</div>
@@ -41,7 +42,23 @@
 			<h1>AVK+ Groupe C</h1> 
 		</div>
 		
-			<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="add-form" data-theme="a">
+		<!-- panneau  de gauche (menu) -->
+		<div data-role="panel" data-position="left" data-position-fixed="false" data-display="overlay" id="left-panel" data-theme="a">
+			<form class="userform">
+				<h2>Menu</h2>
+				<a href="src/pages/aide_rapide.html" data-ajax="false" data-icon="gear" data-role="button" data-theme="c" >Aide rapide</a>
+				<a href="src/pages/protocole.html" data-ajax="false" data-icon="info" data-role="button" data-theme="c" >Le protocole AVK</a>
+				<a href="src/pages/historique.html" data-ajax="false" data-icon="grid" data-role="button" data-theme="c" >Dossiers patients</a>
+				<a href="index.html" data-ajax="false" data-icon="home" data-role="button" data-theme="c" >Accueil</a>
+			
+				<h2>Recherche</h2>
+				<ul id="List" data-role="listview" data-icon="false" data-filter="true" data-filter-placeholder="Rechercher" data-filter-reveal="true" data-theme="a">
+				
+			</form>
+		</div>
+		
+		<!-- panneau  de droite -->
+		<div data-role="panel" data-position="right" data-position-fixed="false" data-display="overlay" id="right-panel" 	data-theme="a">
 
 			<form class="userform">
 				<h2>Se connecter</h2>
