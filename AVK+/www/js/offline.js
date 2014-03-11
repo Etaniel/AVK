@@ -1,7 +1,5 @@
-if(navigator.onLine){
-	document.getElementById("historique").style.visibility = 'visible'; 
-}
-	else{
-	
+
+function offline(){
+	alert("Vous devez être connecté à internet pour utiliser cette fonction.");
 }
 
