@@ -94,9 +94,14 @@ function result1(idTxWI, idj3sup){
 			else if(TxWI < 1.9){
 				dose = 3;
 			}
-			else{ 
-				//inf à 2.5
+			else if(TxWI < 2.5){ 
 				dose = 1;
+			}
+			else{
+				//taux supérieur à 2.5
+				displayAffichage("arrêt jusqu'à INR < 2.5 et reprendre à 1mg de Warfarine");
+				return false;
+			
 			}
 		
 		}
@@ -152,6 +157,7 @@ function result2(idTxFI, idD_FI, idj2sup, idFIJ2){
 	var FIJ2 = document.getElementById(idFIJ2);
 	dose = 0;
 	
+		
 	if (valve.checked){
 		 // vérifier ce que ça change sur la dose ou l'INR
 	}
@@ -165,13 +171,9 @@ function result2(idTxFI, idD_FI, idj2sup, idFIJ2){
 			displayAffichage("INR incorrect");
 			return false;
 		}
-		if (testDose(D_FI, "fluindione") != ""){
-			displayAffichage("dose incorrecte");
-			return false;
-		}
-		D_FI = parseInt(D_FI.value);
+		
+		
 		TxFI = parseFloat(TxFI.value);
-		// return false
 		
 		if(FIJ2.checked){
 			//traitement J2
@@ -191,11 +193,17 @@ function result2(idTxFI, idD_FI, idj2sup, idFIJ2){
 				dose = 5;
 			}
 			else{
-				dose = D_FI;
+				dose = 20;
 				//dose dans la norme pas de changement
 			}
 		}
 		else{
+			if (testDose(D_FI, "fluindione") != ""){
+				displayAffichage("dose incorrecte");
+				return false;
+			}
+			D_FI = parseFloat(D_FI.value);
+			
 			//traitement J4 ou supérieur
 			if (TxFI < 1.6){
 				dose = D_FI + 10;
@@ -215,12 +223,12 @@ function result2(idTxFI, idD_FI, idj2sup, idFIJ2){
 				}
 			}
 			else{
-				//INR > 3
+				//INR >= 3
 				if(D_FI > 15){
 					dose = D_FI - 10;
 				}
 				else{
-					// ????????
+					dose = D_FI;
 				}
 			}	
 		}
